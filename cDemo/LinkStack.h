@@ -1,41 +1,58 @@
-//
-// Created by lance on 2015/11/1.
-//
 #include <iostream>
+
 using namespace std;
 
+class LinkStack;
 
+class StackNode {
+    friend class LinkStack;
 
-class  LinkStack;
-
-class  StackNode{
 private:
     int data;
-    StackNode *link;
+    //结点数据
+    StackNode *link;//结点链表指针
 public:
-    StackNode(int d,StackNode *node){
-        data=d;
-        link=node;
+    StackNode(int d = 0, StackNode *next = NULL) {
+        data = d;
+        link = next;
     }
 };
 
-class LinkStack{
+class LinkStack {
 private:
-    StackNode *top;
+    StackNode *top;//栈顶指针
 public:
-    bool isEmpty(){top==NULL? true: false;};//是否为空
-    int size();//大小
-    void push(int arg);//添加值
-    int pop();//取值
-    void display();//显示
-    void reverse();//反转
+    //是否为空
+    bool isEmpty() { top == NULL ? true : false; };
+
+    //大小
+    int size() const ;
+
+    //添加值
+    void push(int arg);
+
+    //取值
+    int pop();
+
+    //显示
+    void display();
+
+    //反转
+    void reverse();
 };
-int LinkStack::size() {
-    return 0;
+
+int LinkStack::size() const {
+    int size = 0;
+    StackNode *p = top;
+    while (p != NULL) {
+        p = p->link;
+        size++;
+    }
+    return size;
 }
 
 void LinkStack::push(int arg) {
-
+    top = new StackNode(arg, top);
 }
 
 int LinkStack::pop() {
@@ -43,7 +60,6 @@ int LinkStack::pop() {
 }
 
 void LinkStack::display() {
-
 
 }
 
