@@ -37,8 +37,14 @@ public:
     //显示
     void display();
 
+    void display(StackNode *head);
+
+    StackNode *getFirst();
+
     //反转
-    void reverse();
+    void reverse(StackNode *head);//仅输出反转
+
+    StackNode *reverseNew();
 
     //清除
     void clean();
@@ -59,7 +65,11 @@ void LinkStack::push(int arg) {
 }
 
 int LinkStack::pop() {
-
+    StackNode *p = top;
+    int data = p->data;
+    top = top->link;
+    delete p;
+    return data;
 }
 
 void LinkStack::display() {
@@ -71,23 +81,54 @@ void LinkStack::display() {
     cout << endl;
 }
 
-void LinkStack::reverse() {
+void LinkStack::display(StackNode *head) {
+    StackNode *p = head;
+    while (p != NULL) {
+        cout << p->data << ",";
+        p = p->link;
+    }
+    cout << endl;
+}
 
+void LinkStack::reverse(StackNode *head) {
+    if (!head) {
+        return;
+    } else {
+        reverse(head->link);
+        cout << head->data << ",";
+    }
+    cout << endl;
+}
+
+StackNode * LinkStack::reverseNew() {
+    StackNode *prev, *curr;
+    prev = NULL;
+    curr = top;
+    while (curr != NULL) {
+        StackNode  *next = curr->link;
+        curr->link = prev;
+        prev = curr;
+        curr = next;
+    }
+    return prev;
 }
 
 void LinkStack::clean() {
     if (top == NULL) {
         return;
     }
-    int count = size();
-    cout << "clean before:" << count;
     StackNode *p;
     while (top != NULL) {
         p = top;
         top = top->link;
         delete p;
     }
-    cout << "clean back:" << count<<endl;
 }
+
+
+StackNode *LinkStack::getFirst() {
+    return top;
+}
+
 
 
