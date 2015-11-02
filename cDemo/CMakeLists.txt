@@ -3,5 +3,5 @@ project(cDemo)
 
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
-set(SOURCE_FILES main.cpp LinkStack.h)
+set(SOURCE_FILES main.cpp LinkStack.h BinaryTree.h)
 add_executable(cDemo ${SOURCE_FILES})
