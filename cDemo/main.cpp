@@ -10,8 +10,9 @@ int main() {
         linkStack.push(items[i]);
     }
     int size=linkStack.size();
-    cout<<"Õ»´óÐ¡:"<<size<<endl;
-
+    cout<<"size:"<<size<<endl;
+    linkStack.display();
+    linkStack.clean();
 
     system("pause");
     return 0;

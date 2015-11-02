@@ -26,7 +26,7 @@ public:
     bool isEmpty() { top == NULL ? true : false; };
 
     //大小
-    int size() const ;
+    int size() const;
 
     //添加值
     void push(int arg);
@@ -39,6 +39,9 @@ public:
 
     //反转
     void reverse();
+
+    //清除
+    void clean();
 };
 
 int LinkStack::size() const {
@@ -60,11 +63,31 @@ int LinkStack::pop() {
 }
 
 void LinkStack::display() {
-
+    StackNode *p = top;
+    while (p != NULL) {
+        cout << p->data << ",";
+        p = p->link;
+    }
+    cout << endl;
 }
 
 void LinkStack::reverse() {
 
+}
+
+void LinkStack::clean() {
+    if (top == NULL) {
+        return;
+    }
+    int count = size();
+    cout << "clean before:" << count;
+    StackNode *p;
+    while (top != NULL) {
+        p = top;
+        top = top->link;
+        delete p;
+    }
+    cout << "clean back:" << count<<endl;
 }
 
 
